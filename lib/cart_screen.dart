@@ -4,7 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_shopper/models/cart.dart';
+import 'package:provider_shopper/cart_model.dart';
 
 class MyCart extends StatelessWidget {
   const MyCart({super.key});

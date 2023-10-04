@@ -8,12 +8,12 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_shopper/common/theme.dart';
-import 'package:provider_shopper/models/cart.dart';
-import 'package:provider_shopper/models/catalog.dart';
-import 'package:provider_shopper/screens/cart.dart';
-import 'package:provider_shopper/screens/catalog.dart';
-import 'package:provider_shopper/screens/login.dart';
+import 'package:provider_shopper/cart_model.dart';
+import 'package:provider_shopper/cart_screen.dart';
+import 'package:provider_shopper/catalog_model.dart';
+import 'package:provider_shopper/catalog_screen.dart';
+import 'package:provider_shopper/login.dart';
+import 'package:provider_shopper/theme.dart';
 import 'package:window_size/window_size.dart';
 
 void main() {

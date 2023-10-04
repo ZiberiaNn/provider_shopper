@@ -5,8 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_shopper/models/cart.dart';
-import 'package:provider_shopper/models/catalog.dart';
+import 'package:provider_shopper/models/cart_model.dart';
+import 'package:provider_shopper/models/catalog_model.dart';
 import 'package:provider_shopper/screens/cart.dart';
 
 CartModel? cartModel;

@@ -98,7 +98,7 @@ class _MyListItem extends StatelessWidget {
     var item = context.select<CatalogModel, Item>(
       // Here, we are only interested in the item at [index]. We don't care
       // about any other change.
-      (catalog) => catalog.getByPosition(index),
+      (catalog) => catalog.getbyposition(index),
     );
     var textTheme = Theme.of(context).textTheme.titleLarge;
 

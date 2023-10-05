@@ -10,7 +10,7 @@ class CartModel extends ChangeNotifier {
   late CatalogModel _catalog;
 
   /// Internal, private state of the cart. Stores the ids of each item.
-  final List<int> _itemIds = [];
+  final List<int> _items = [];
 
   /// The current catalog. Used to construct items from numeric ids.
   CatalogModel get catalog => _catalog;
@@ -24,7 +24,8 @@ class CartModel extends ChangeNotifier {
   }
 
   /// List of items in the cart.
-  List<Item> get items => _itemIds.map((id) => _catalog.getById(id)).toList();
+  List<Item> get items =>
+      _items.map((id) => _catalog.GetOneItemBYId(id)).toList();
 
   /// The current total price of all items.
   int get totalPrice =>
@@ -32,14 +33,14 @@ class CartModel extends ChangeNotifier {
 
   /// Adds [item] to cart. This is the only way to modify the cart from outside.
   void add(Item item) {
-    _itemIds.add(item.id);
+    _items.add(item.id);
     // This line tells [Model] that it should rebuild the widgets that
     // depend on it.
     notifyListeners();
   }
 
   void remove(Item item) {
-    _itemIds.remove(item.id);
+    _items.remove(item.id);
     // Don't forget to tell dependent widgets to rebuild _every time_
     // you change the model.
     notifyListeners();

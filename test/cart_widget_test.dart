@@ -5,9 +5,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_shopper/models/cart_model.dart';
-import 'package:provider_shopper/models/catalog_model.dart';
-import 'package:provider_shopper/screens/cart.dart';
+import 'package:provider_shopper/cart_model.dart';
+import 'package:provider_shopper/catalog_model.dart';
+import 'package:provider_shopper/cart_screen.dart';
 
 CartModel? cartModel;
 CatalogModel? catalogModel;
@@ -48,7 +48,7 @@ void main() {
 
       // Adding five items in the cart and testing.
       for (var i = 0; i < 5; i++) {
-        var item = catalogModel!.getByPosition(i);
+        var item = catalogModel!.getbyposition(i);
         cartModel!.add(item);
         await tester.pumpAndSettle();
         expect(find.text(item.name), findsOneWidget);

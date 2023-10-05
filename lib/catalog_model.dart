@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 /// For simplicity, the catalog is expected to be immutable (no products are
 /// expected to be added, removed or changed during the execution of the app).
 class CatalogModel {
-  static List<String> itemNames = [
+  static List<String> items = [
     'Code Smell',
     'Control Flow',
     'Interpreter',
@@ -32,14 +32,14 @@ class CatalogModel {
 
   /// Get item by [id].
   ///
-  /// In this sample, the catalog is infinite, looping over [itemNames].
-  Item getById(int id) => Item(id, itemNames[id % itemNames.length]);
+  /// In this sample, the catalog is infinite, looping over [items].
+  Item GetOneItemBYId(int id) => Item(id, items[id % items.length]);
 
   /// Get item by its position in the catalog.
-  Item getByPosition(int position) {
+  Item getbyposition(int position) {
     // In this simplified case, an item's position in the catalog
     // is also its id.
-    return getById(position);
+    return GetOneItemBYId(position);
   }
 }
 

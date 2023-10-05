@@ -39,7 +39,10 @@ class CatalogModel {
   Item getbyposition(int position) {
     // In this simplified case, an item's position in the catalog
     // is also its id.
-    return GetOneItemBYId(position);
+
+    Item itemFoundById = Item(position, items[position % items.length]);
+
+    return itemFoundById;
   }
 }
 

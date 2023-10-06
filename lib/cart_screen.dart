@@ -27,7 +27,40 @@ class MyCart extends StatelessWidget {
               ),
             ),
             const Divider(height: 4, color: Colors.black),
-            _CartTotal()
+            SizedBox(
+              height: 200,
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Another way to listen to a model's change is to include
+                    // the Consumer widget. This widget will automatically listen
+                    // to CartModel and rerun its builder on every change.
+                    //
+                    // The important thing is that it will not rebuild
+                    // the rest of the widgets in this build method.
+                    Consumer<CartModel>(
+                        builder: (context, cart, child) => Text(
+                            '\$${cart.totalPrice}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .displayLarge!
+                                .copyWith(fontSize: 48))),
+                    const SizedBox(width: 24),
+                    FilledButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text('Buying not supported yet.')));
+                      },
+                      style:
+                          TextButton.styleFrom(foregroundColor: Colors.white),
+                      child: const Text('BUY'),
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
@@ -57,43 +90,6 @@ class _CartList extends StatelessWidget {
         title: Text(
           cart.items[index].name,
           style: itemNameStyle,
-        ),
-      ),
-    );
-  }
-}
-
-class _CartTotal extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    var hugeStyle =
-        Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: 48);
-
-    return SizedBox(
-      height: 200,
-      child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Another way to listen to a model's change is to include
-            // the Consumer widget. This widget will automatically listen
-            // to CartModel and rerun its builder on every change.
-            //
-            // The important thing is that it will not rebuild
-            // the rest of the widgets in this build method.
-            Consumer<CartModel>(
-                builder: (context, cart, child) =>
-                    Text('\$${cart.totalPrice}', style: hugeStyle)),
-            const SizedBox(width: 24),
-            FilledButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Buying not supported yet.')));
-              },
-              style: TextButton.styleFrom(foregroundColor: Colors.white),
-              child: const Text('BUY'),
-            ),
-          ],
         ),
       ),
     );

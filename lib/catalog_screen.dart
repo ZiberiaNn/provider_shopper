@@ -5,8 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_shopper/cart_model.dart';
-import 'package:provider_shopper/catalog_model.dart';
+import 'package:provider_shopper/cart_screen.dart';
 
 class MyCatalog extends StatelessWidget {
   const MyCatalog({super.key});
@@ -125,4 +124,65 @@ class _MyListItem extends StatelessWidget {
       ),
     );
   }
+}
+
+/// A proxy of the catalog of items the user can buy.
+///
+/// In a real app, this might be backed by a backend and cached on device.
+/// In this sample app, the catalog is procedurally generated and infinite.
+///
+/// For simplicity, the catalog is expected to be immutable (no products are
+/// expected to be added, removed or changed during the execution of the app).
+class CatalogModel {
+  static List<String> items = [
+    'Code Smell',
+    'Control Flow',
+    'Interpreter',
+    'Recursion',
+    'Sprint',
+    'Heisenbug',
+    'Spaghetti',
+    'Hydra Code',
+    'Off-By-One',
+    'Scope',
+    'Callback',
+    'Closure',
+    'Automata',
+    'Bit Shift',
+    'Currying',
+  ];
+
+  /// Get item by [id].
+  ///
+  /// In this sample, the catalog is infinite, looping over [items].
+  Item GetOneItemBYId(int id) => Item(id, items[id % items.length]);
+
+  /// Get item by its position in the catalog.
+  Item getbyposition(int position) {
+    // In this simplified case, an item's position in the catalog
+    // is also its id.
+
+    Item itemFoundById = Item(position, items[position % items.length]);
+
+    return itemFoundById;
+  }
+}
+
+@immutable
+class Item {
+  final int id;
+  final String name;
+  final Color color;
+  final int price = 42;
+
+  Item(this.id, this.name)
+      // To make the sample app look nicer, each item is given one of the
+      // Material Design primary colors.
+      : color = Colors.primaries[id % Colors.primaries.length];
+
+  @override
+  int get hashCode => id;
+
+  @override
+  bool operator ==(Object other) => other is Item && other.id == id;
 }

@@ -5,9 +5,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
+import 'package:provider_shopper/cart_screen.dart';
+import 'package:provider_shopper/catalog_screen.dart';
 import 'package:provider_shopper/main.dart';
-import 'package:provider_shopper/models/cart_model.dart';
-import 'package:provider_shopper/models/catalog_model.dart';
 
 void main() {
   testWidgets('Login page Widget test', (tester) async {

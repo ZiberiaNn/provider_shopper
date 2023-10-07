@@ -5,9 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_shopper/models/cart_model.dart';
-import 'package:provider_shopper/models/catalog_model.dart';
-import 'package:provider_shopper/screens/catalog.dart';
+import 'package:provider_shopper/cart_screen.dart';
+import 'package:provider_shopper/catalog_screen.dart';
 
 Widget createCatalogScreen() => MultiProvider(
       providers: [
@@ -26,7 +25,7 @@ Widget createCatalogScreen() => MultiProvider(
     );
 
 void main() {
-  final catalogListItems = CatalogModel.itemNames.sublist(0, 3);
+  final catalogListItems = CatalogModel.items.sublist(0, 3);
 
   group('CatalogScreen Widget Tests', () {
     testWidgets('Testing item row counts and text', (tester) async {

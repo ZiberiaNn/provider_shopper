@@ -15,7 +15,17 @@ class catalog extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          appbar(),
+          SliverAppBar(
+            title: Text('Catalog',
+                style: Theme.of(context).textTheme.displayLarge),
+            floating: true,
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.shopping_cart),
+                onPressed: () => context.go('/catalog/cart'),
+              ),
+            ],
+          ),
           const SliverToBoxAdapter(child: SizedBox(height: 12)),
           SliverList(
             delegate:

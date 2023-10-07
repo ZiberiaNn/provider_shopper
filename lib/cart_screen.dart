@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_shopper/catalog_screen.dart';
 
-class MyCart extends StatelessWidget {
-  const MyCart({super.key});
+class cart extends StatelessWidget {
+  const cart({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class MyCart extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(32),
-                child: _CartList(),
+                child: cartlist(),
               ),
             ),
             const Divider(height: 4, color: Colors.black),
@@ -39,7 +39,7 @@ class MyCart extends StatelessWidget {
                     //
                     // The important thing is that it will not rebuild
                     // the rest of the widgets in this build method.
-                    Consumer<CartModel>(
+                    Consumer<cartmodel>(
                         builder: (context, cart, child) => Text(
                             '\$${cart.totalPrice}',
                             style: Theme.of(context)
@@ -68,14 +68,14 @@ class MyCart extends StatelessWidget {
   }
 }
 
-class _CartList extends StatelessWidget {
+class cartlist extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var itemNameStyle = Theme.of(context).textTheme.titleLarge;
     // This gets the current state of CartModel and also tells Flutter
     // to rebuild this widget when CartModel notifies listeners (in other words,
     // when it changes).
-    var cart = context.watch<CartModel>();
+    var cart = context.watch<cartmodel>();
 
     return ListView.builder(
       itemCount: cart.items.length,
@@ -96,17 +96,17 @@ class _CartList extends StatelessWidget {
   }
 }
 
-class CartModel extends ChangeNotifier {
+class cartmodel extends ChangeNotifier {
   /// The private field backing [catalog].
-  late CatalogModel _catalog;
+  late catalogmodel _catalog;
 
   /// Internal, private state of the cart. Stores the ids of each item.
   final List<int> _items = [];
 
   /// The current catalog. Used to construct items from numeric ids.
-  CatalogModel get catalog => _catalog;
+  catalogmodel get catalog => _catalog;
 
-  set catalog(CatalogModel newCatalog) {
+  set catalog(catalogmodel newCatalog) {
     _catalog = newCatalog;
     // Notify listeners, in case the new catalog provides information
     // different from the previous one. For example, availability of an item
@@ -131,6 +131,7 @@ class CartModel extends ChangeNotifier {
     _items.add(item.id);
     // This line tells [Model] that it should rebuild the widgets that
     // depend on it.
+    print("A");
     notifyListeners();
   }
 

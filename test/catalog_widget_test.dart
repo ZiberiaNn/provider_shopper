@@ -10,9 +10,9 @@ import 'package:provider_shopper/catalog_screen.dart';
 
 Widget createCatalogScreen() => MultiProvider(
       providers: [
-        Provider(create: (context) => CatalogModel()),
-        ChangeNotifierProxyProvider<CatalogModel, CartModel>(
-          create: (context) => CartModel(),
+        Provider(create: (context) => catalogmodel()),
+        ChangeNotifierProxyProvider<catalogmodel, cartmodel>(
+          create: (context) => cartmodel(),
           update: (context, catalog, cart) {
             cart!.catalog = catalog;
             return cart;
@@ -20,12 +20,12 @@ Widget createCatalogScreen() => MultiProvider(
         ),
       ],
       child: const MaterialApp(
-        home: MyCatalog(),
+        home: catalog(),
       ),
     );
 
 void main() {
-  final catalogListItems = CatalogModel.items.sublist(0, 3);
+  final catalogListItems = catalogmodel.items.sublist(0, 3);
 
   group('CatalogScreen Widget Tests', () {
     testWidgets('Testing item row counts and text', (tester) async {

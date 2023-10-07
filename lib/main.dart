@@ -44,15 +44,15 @@ GoRouter router() {
     routes: [
       GoRoute(
         path: '/login',
-        builder: (context, state) => const MyLogin(),
+        builder: (context, state) => const login(),
       ),
       GoRoute(
         path: '/catalog',
-        builder: (context, state) => const MyCatalog(),
+        builder: (context, state) => const catalog(),
         routes: [
           GoRoute(
             path: 'cart',
-            builder: (context, state) => const MyCart(),
+            builder: (context, state) => const cart(),
           ),
         ],
       ),
@@ -70,12 +70,12 @@ class MyApp extends StatelessWidget {
       providers: [
         // In this sample app, CatalogModel never changes, so a simple Provider
         // is sufficient.
-        Provider(create: (context) => CatalogModel()),
+        Provider(create: (context) => catalogmodel()),
         // CartModel is implemented as a ChangeNotifier, which calls for the use
         // of ChangeNotifierProvider. Moreover, CartModel depends
         // on CatalogModel, so a ProxyProvider is needed.
-        ChangeNotifierProxyProvider<CatalogModel, CartModel>(
-          create: (context) => CartModel(),
+        ChangeNotifierProxyProvider<catalogmodel, cartmodel>(
+          create: (context) => cartmodel(),
           update: (context, catalog, cart) {
             if (cart == null) throw ArgumentError.notNull('cart');
             cart.catalog = catalog;

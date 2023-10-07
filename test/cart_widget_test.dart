@@ -8,13 +8,13 @@ import 'package:provider/provider.dart';
 import 'package:provider_shopper/cart_screen.dart';
 import 'package:provider_shopper/catalog_screen.dart';
 
-CartModel? cartModel;
-CatalogModel? catalogModel;
+cartmodel? cartModel;
+catalogmodel? catalogModel;
 Widget createCartScreen() => MultiProvider(
       providers: [
-        Provider(create: (context) => CatalogModel()),
-        ChangeNotifierProxyProvider<CatalogModel, CartModel>(
-          create: (context) => CartModel(),
+        Provider(create: (context) => catalogmodel()),
+        ChangeNotifierProxyProvider<catalogmodel, cartmodel>(
+          create: (context) => cartmodel(),
           update: (context, catalog, cart) {
             catalogModel = catalog;
             cartModel = cart;
@@ -24,7 +24,7 @@ Widget createCartScreen() => MultiProvider(
         ),
       ],
       child: const MaterialApp(
-        home: MyCart(),
+        home: cart(),
       ),
     );
 

@@ -7,19 +7,19 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_shopper/cart_screen.dart';
 
-class MyCatalog extends StatelessWidget {
-  const MyCatalog({super.key});
+class catalog extends StatelessWidget {
+  const catalog({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          _MyAppBar(),
+          appbar(),
           const SliverToBoxAdapter(child: SizedBox(height: 12)),
           SliverList(
-            delegate: SliverChildBuilderDelegate(
-                (context, index) => _MyListItem(index)),
+            delegate:
+                SliverChildBuilderDelegate((context, index) => listitem(index)),
           ),
         ],
       ),
@@ -27,10 +27,10 @@ class MyCatalog extends StatelessWidget {
   }
 }
 
-class _AddButton extends StatelessWidget {
+class button extends StatelessWidget {
   final Item item;
 
-  const _AddButton({required this.item});
+  const button({required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class _AddButton extends StatelessWidget {
     // this widget unless that particular part of the model changes.
     //
     // This can lead to significant performance improvements.
-    var isInCart = context.select<CartModel, bool>(
+    var isInCart = context.select<cartmodel, bool>(
       // Here, we are only interested whether [item] is inside the cart.
       (cart) => cart.items.contains(item),
     );
@@ -53,7 +53,7 @@ class _AddButton extends StatelessWidget {
               // We are using context.read() here because the callback
               // is executed whenever the user taps the button. In other
               // words, it is executed outside the build method.
-              var cart = context.read<CartModel>();
+              var cart = context.read<cartmodel>();
               cart.add(item);
             },
       style: ButtonStyle(
@@ -71,7 +71,7 @@ class _AddButton extends StatelessWidget {
   }
 }
 
-class _MyAppBar extends StatelessWidget {
+class appbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -87,14 +87,14 @@ class _MyAppBar extends StatelessWidget {
   }
 }
 
-class _MyListItem extends StatelessWidget {
+class listitem extends StatelessWidget {
   final int index;
 
-  const _MyListItem(this.index);
+  const listitem(this.index);
 
   @override
   Widget build(BuildContext context) {
-    var item = context.select<CatalogModel, Item>(
+    var item = context.select<catalogmodel, Item>(
       // Here, we are only interested in the item at [index]. We don't care
       // about any other change.
       (catalog) => catalog.getbyposition(index),
@@ -118,7 +118,7 @@ class _MyListItem extends StatelessWidget {
               child: Text(item.name, style: textTheme),
             ),
             const SizedBox(width: 24),
-            _AddButton(item: item),
+            button(item: item),
           ],
         ),
       ),
@@ -133,7 +133,7 @@ class _MyListItem extends StatelessWidget {
 ///
 /// For simplicity, the catalog is expected to be immutable (no products are
 /// expected to be added, removed or changed during the execution of the app).
-class CatalogModel {
+class catalogmodel {
   static List<String> items = [
     'Code Smell',
     'Control Flow',
@@ -161,7 +161,7 @@ class CatalogModel {
   Item getbyposition(int position) {
     // In this simplified case, an item's position in the catalog
     // is also its id.
-
+    print("b");
     Item itemFoundById = Item(position, items[position % items.length]);
 
     return itemFoundById;
